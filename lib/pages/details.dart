@@ -24,81 +24,90 @@ class DetailsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       extendBodyBehindAppBar: true,
-      backgroundColor: Colors.black,
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         centerTitle: true,
         title: Text(
           title,
           style: const TextStyle(
-            fontSize: 30,
+            fontSize: 25,
+            color: Colors.black,
             fontWeight: FontWeight.bold,
             fontFamily: 'Times New Roman',
           ),
         ),
       ),
-      body: ListView(
-        addRepaintBoundaries: true,
-        children: [
-          ClipRRect(
-            child: Image.network(
-              imageurl,
-              fit: BoxFit.cover,
-              height: 250,
-            ),
-          ),
-          Text(
-            '⭐ Average Rating $rating',
-            style: const TextStyle(
-              fontSize: 20,
-              fontWeight: FontWeight.bold,
-              fontFamily: 'Times New Roman',
-            ),
-          ),
-          Text(
-            title,
-            textAlign: TextAlign.start,
-            style: const TextStyle(
-              fontSize: 30,
-              fontWeight: FontWeight.bold,
-              fontFamily: 'Times New Roman',
-            ),
-          ),
-          Text(
-            releasedate,
-            textAlign: TextAlign.start,
-            style: const TextStyle(
-              fontSize: 20,
-              fontWeight: FontWeight.bold,
-              fontFamily: 'Times New Roman',
-            ),
-          ),
-          Expanded(
-              child: Row(
-            children: [
-              ClipRRect(
-                borderRadius: BorderRadius.circular(30),
-                child: Image.network(
-                  imageurl,
-                  height: 250,
-                ),
+      body: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: ListView(
+          addRepaintBoundaries: true,
+          children: [
+            ClipRRect(
+              child: Image.network(
+                imageurl,
+                fit: BoxFit.cover,
+                height: 250,
               ),
-              Flexible(
-                  child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Text(
-                  overview,
-                  textAlign: TextAlign.justify,
-                  style: const TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
-                    fontFamily: 'Times New Roman',
+            ),
+            Text(
+              '⭐ Average Rating $rating',
+              style: const TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+                color: Colors.black,
+                fontFamily: 'Times New Roman',
+              ),
+            ),
+            Text(
+              title,
+              textAlign: TextAlign.start,
+              style: const TextStyle(
+                fontSize: 25,
+                fontWeight: FontWeight.bold,
+                color: Colors.black,
+                fontFamily: 'Times New Roman',
+              ),
+            ),
+            Text(
+              releasedate,
+              textAlign: TextAlign.start,
+              style: const TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+                color: Colors.black,
+                fontFamily: 'Times New Roman',
+              ),
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(30),
+                  child: Image.network(
+                    imageurl,
+                    height: 250,
                   ),
                 ),
-              )),
-            ],
-          )),
-        ],
+                Flexible(
+                    child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text(
+                    overview,
+                    textAlign: TextAlign.justify,
+                    style: const TextStyle(
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black,
+                      fontFamily: 'Times New Roman',
+                    ),
+                  ),
+                )),
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }

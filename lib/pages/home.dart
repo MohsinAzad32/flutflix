@@ -47,9 +47,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Theme.of(context).colorScheme.primary,
       appBar: AppBar(
-        backgroundColor: Colors.transparent,
         centerTitle: true,
         title: const Text(
           'Home',
@@ -87,7 +85,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ),
             ),
-            Container(
+            SizedBox(
                 height: 200,
                 child: ListView.builder(
                   scrollDirection: Axis.horizontal,
@@ -145,7 +143,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ),
             ),
-            Container(
+            SizedBox(
                 height: 200,
                 child: ListView.builder(
                   scrollDirection: Axis.horizontal,
@@ -153,13 +151,32 @@ class _HomeScreenState extends State<HomeScreen> {
                   itemBuilder: (context, index) {
                     return Padding(
                       padding: const EdgeInsets.all(8.0),
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(30),
-                        child: Image.network(
-                          // ignore: prefer_interpolation_to_compose_strings
-                          'http://image.tmdb.org/t/p/w500' +
-                              tv[index]["poster_path"],
-                          height: 200,
+                      child: InkWell(
+                        onTap: () {
+                          Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (ctx) => DetailsScreen(
+                                amount: '',
+                                // ignore: prefer_interpolation_to_compose_strings
+                                imageurl: 'http://image.tmdb.org/t/p/w500' +
+                                    trend[index]["poster_path"],
+                                overview: trend[index]["overview"],
+                                rating: trend[index]["vote_average"].toString(),
+                                releasedate: trend[index]["release_date"],
+                                tagline: trend[index]["tagline"] ?? 'loading',
+                                title: trend[index]["title"],
+                              ),
+                            ),
+                          );
+                        },
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(30),
+                          child: Image.network(
+                            // ignore: prefer_interpolation_to_compose_strings
+                            'http://image.tmdb.org/t/p/w500' +
+                                tv[index]["poster_path"],
+                            height: 200,
+                          ),
                         ),
                       ),
                     );
@@ -184,7 +201,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ),
             ),
-            Container(
+            SizedBox(
                 height: 200,
                 child: ListView.builder(
                   scrollDirection: Axis.horizontal,
@@ -192,13 +209,31 @@ class _HomeScreenState extends State<HomeScreen> {
                   itemBuilder: (context, index) {
                     return Padding(
                       padding: const EdgeInsets.all(8.0),
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(30),
-                        child: Image.network(
-                          // ignore: prefer_interpolation_to_compose_strings
-                          'http://image.tmdb.org/t/p/w500' +
-                              movies[index]["poster_path"],
-                          height: 200,
+                      child: InkWell(
+                        onTap: () {
+                          Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (ctx) => DetailsScreen(
+                                amount: '',
+                                imageurl:
+                                    'http://image.tmdb.org/t/p/w500${trend[index]["poster_path"]}',
+                                overview: trend[index]["overview"],
+                                rating: trend[index]["vote_average"].toString(),
+                                releasedate: trend[index]["release_date"],
+                                tagline: trend[index]["tagline"] ?? 'loading',
+                                title: trend[index]["title"],
+                              ),
+                            ),
+                          );
+                        },
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(30),
+                          child: Image.network(
+                            // ignore: prefer_interpolation_to_compose_strings
+                            'http://image.tmdb.org/t/p/w500' +
+                                movies[index]["poster_path"],
+                            height: 200,
+                          ),
                         ),
                       ),
                     );
